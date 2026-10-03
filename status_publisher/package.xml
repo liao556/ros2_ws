@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>receive_all</name>
+  <name>status_publisher</name>
   <version>0.0.0</version>
-  <description>订阅话题 showing 并打印本机状态</description>
+  <description>系统状态发布者与 tkinter 显示窗口</description>
   <maintainer email="liaouiming@example.com">Liao Youming</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
   <depend>status_interfaces</depend>
   <exec_depend>python3-psutil</exec_depend>
+  <exec_depend>python3-tk</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

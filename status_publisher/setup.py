@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'check_cpu'
+package_name = 'status_publisher'
 
 setup(
     name=package_name,
@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='Liao Youming',
     maintainer_email='liaouiming@example.com',
-    description='服务客户端：请求 check_cpu 服务',
+    description='系统状态发布者与 tkinter 显示窗口',
     license='TODO: License declaration',
     extras_require={
         'test': [
@@ -25,7 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'check_cpu_node=check_cpu.check:main',
+            'sys_status_pub=status_publisher.sys_status_pub:main',
+            'gui_display=status_publisher.gui_display:main',
         ],
     },
 )

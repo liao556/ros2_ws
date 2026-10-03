@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='Liao Youming',
     maintainer_email='liaouiming@example.com',
-    description='TODO: Package description',
+    description='发布本机状态到话题 showing',
     license='TODO: License declaration',
     extras_require={
         'test': [
@@ -24,7 +24,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': ["publish_all_node=showing.show:main"
+        'console_scripts': [
+            'publish_all_node=showing.show:main',
         ],
     },
 )

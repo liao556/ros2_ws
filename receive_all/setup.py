@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='Liao Youming',
     maintainer_email='liaouiming@example.com',
-    description='TODO: Package description',
+    description='订阅话题 showing 并打印本机状态',
     license='TODO: License declaration',
     extras_require={
         'test': [
@@ -24,7 +24,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': ["receive_all_node=receive_all.subscibe:main"
+        'console_scripts': [
+            'receive_all_node=receive_all.subscibe:main',
         ],
     },
 )

@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='Liao Youming',
     maintainer_email='liaouiming@example.com',
-    description='TODO: Package description',
+    description='服务端：提供 check_cpu 服务',
     license='TODO: License declaration',
     extras_require={
         'test': [
@@ -24,7 +24,8 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': ["display_cpu_node=display_cpu.cpu:main"
+        'console_scripts': [
+            'display_cpu_node=display_cpu.cpu:main',
         ],
     },
 )

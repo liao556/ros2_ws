@@ -3,10 +3,13 @@
 <package format="3">
   <name>display_cpu</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>服务端：提供 check_cpu 服务判断是否需要清理电脑</description>
   <maintainer email="liaouiming@example.com">Liao Youming</maintainer>
   <license>TODO: License declaration</license>
-<depend>status_interfaces</depend>
+
+  <depend>rclpy</depend>
+  <depend>status_interfaces</depend>
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_mypy</test_depend>

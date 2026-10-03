@@ -3,9 +3,13 @@
 <package format="3">
   <name>showing</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>发布本机 CPU / 内存 / 网络状态到话题 showing</description>
   <maintainer email="liaouiming@example.com">Liao Youming</maintainer>
   <license>TODO: License declaration</license>
+
+  <depend>rclpy</depend>
+  <depend>status_interfaces</depend>
+  <exec_depend>python3-psutil</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
