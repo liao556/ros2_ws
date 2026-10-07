@@ -18,6 +18,7 @@
 | `receive_all` | ament_python | `receive_all_node` | 订阅 `/showing` 并打印 |
 | `display_cpu` | ament_python | `display_cpu_node` | **服务端**，提供 `/check_cpu` |
 | `check_cpu` | ament_python | `check_cpu_node` | **客户端**，读取 CPU 后调用 `/check_cpu` |
+| `c_make` | ament_cmake | `make_node` | C++ 节点示例 |
 
 ## 接口定义
 
@@ -94,7 +95,49 @@ ros2 run check_cpu check_cpu_node
 # 话题示例的另一对节点
 ros2 run showing publish_all_node
 ros2 run receive_all receive_all_node
+
+# C++ 示例节点
+ros2 run c_make make_node
 ```
+
+## 跨发行版编译报错怎么避免
+
+`build/<包>/CMakeCache.txt` 里记着"上一次配置时用的 cmake"。**换了 ROS 发行版却
+没删 `build/install/log`**，CMake 就会拿新发行版的脚本去跑旧发行版的缓存，报出：
+
+```
+rosidl_write_generator_arguments() called with unused arguments
+CMakeCache.txt directory is different
+```
+
+仓库里的 `tools/ros_guard.sh` 给 `colcon` 套了一层守卫，`colcon build` 之前会自动
+检查并清理属于另一个发行版的缓存。把它挂到 `~/.bashrc`（`tools/bashrc_snippet.sh`
+就是那段代码）之后，随手 `colcon build` 也不会再踩这个坑。
+
+```bash
+roscheck          # 看当前发行版，以及 build/ 到底是哪个发行版配的
+colcon build      # 缓存发行版不对时会自动清理，然后正常构建
+```
+
+`tools/switch_ros.sh` 在切换时会自动做这件事，并且切换后自检环境里只有一个发行版。
+`.humble-env` 里还装了 conda 激活钩子（`tools/conda_activate.d/`），所以即使在
+被 `~/.bashrc` 自动 source 成 lyrical 的终端里手动 `micromamba activate`，也不会
+把两个发行版叠在一起。
+
+## C++ 包写法注意（两个发行版都要能编译）
+
+`ament_target_dependencies()` 是 Humble 时代的老写法，**Lyrical 已经把它移除了**
+（报 `Unknown CMake command "ament_target_dependencies"`）。两个版本通用的写法是
+链接现代导出目标：
+
+```cmake
+find_package(rclcpp REQUIRED)
+add_executable(make_node src/c_make.cpp)     # 源文件必须带 .cpp 后缀
+target_link_libraries(make_node rclcpp::rclcpp)
+```
+
+另外 ROS 2 包名只能是 `[a-z][a-z0-9_]*`，**不能带 `+`**，所以包名是 `c_make`
+而不是 `c++_make`。
 
 > 注意命名：本仓库里 `display_cpu` 是服务端、`check_cpu` 是客户端，
 > 和部分教程里两个名字的角色相反，跑的时候别搞混。
