@@ -14,6 +14,7 @@ find_package(builtin_interfaces REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/SystemStatus.msg"
   "msg/Massage.msg"
+  "msg/Test.msg"
   "srv/Contact.srv"
   DEPENDENCIES builtin_interfaces
 )
