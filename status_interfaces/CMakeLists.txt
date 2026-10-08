@@ -13,6 +13,7 @@ find_package(builtin_interfaces REQUIRED)
 # 生成接口
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Massage.msg"
+  "msg/Test.msg"
   "srv/Contact.srv"
   DEPENDENCIES builtin_interfaces
 )
