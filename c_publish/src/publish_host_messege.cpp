@@ -210,7 +210,7 @@ public:
      Writenode(const std::string & name): Node(name)
     {
         publisher=this->create_publisher<status_interfaces::msg::Massage>("test_topic",10);
-        timer=this->create_timer(std::chrono::seconds(4),std::bind(&Writenode::timer_callback,this));
+        timer=this->create_wall_timer(std::chrono::seconds(4),std::bind(&Writenode::timer_callback,this));
         RCLCPP_INFO(this->get_logger(), "节点创建成功");
     }
 
