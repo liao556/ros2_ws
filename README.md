@@ -2,8 +2,9 @@
 
 一个 ROS 2 工作空间，包含两套示例程序：
 
-1. **话题通信**：`showing` 定时采集本机 CPU / 内存 / 网络状态并发布，`receive_all` 订阅并打印。
-2. **服务通信**：`check_cpu` 作为客户端请求 CPU 使用率，`display_cpu` 作为服务端判断电脑是否需要清理。
+1. **话题通信**：python编写的：`showing`包 节点名为publish_all_node 定时采集本机 CPU / 内存 / 网络状态并发布话题“showing”，`receive_all`包 节点名为“receive_all_node” 订阅并打印。
+                C++编写的：'c_publish'包 节点名为test_all_node 定时采集本机 CPU / 内存 / 网络状态并发布话题“test_topic”，`c_topic`包 节点名为“test_topic_node” 订阅并打印。
+3. **服务通信**：`check_cpu` 作为客户端请求 CPU 使用率，`display_cpu` 作为服务端判断电脑是否需要清理。
 
 ## 包说明
 
